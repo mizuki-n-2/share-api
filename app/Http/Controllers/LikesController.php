@@ -11,16 +11,16 @@ class LikesController extends Controller
     public function post(Request $request)
     {
         $now = Carbon::now();
-        $params = [
+        $param = [
             "share_id" => $request->share_id,
             "user_id" => $request->user_id,
             "created_at" => $now,
             "updated_at" => $now
         ];
-        DB::table('likes')->insert($params);
+        DB::table('likes')->insert($param);
         return response()->json([
             'message' => 'Like created successfully',
-            'data' => $params
+            'data' => $param
         ],200);
     }
     public function delete(Request $request)

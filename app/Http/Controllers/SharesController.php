@@ -32,7 +32,7 @@ class SharesController extends Controller
     {
         $item = new Share;
         $item->user_id = $request->user_id;
-        $item->share_id = $request->share_id;
+        $item->share = $request->share;
         $item->save();
         return response()->json([
             'message' => 'Share created successfully',
@@ -49,7 +49,7 @@ class SharesController extends Controller
     public function show(Share $share)
     {
         $item = Share::where('id',$share->id)->first();
-        $like = DB::table('like')->where('share_id',$share->id)->get();
+        $like = DB::table('likes')->where('share_id',$share->id)->get();
         $user_id = $item->user_id;
         $user = DB::table('users')->where('id',(int)$user_id)->first();
         $comment = DB::table('comments')->where('share_id',$share->id)->get();

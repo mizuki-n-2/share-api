@@ -23,14 +23,14 @@ class UsersController extends Controller
     }
     public function put(Request $request)
     {
-        $params = [
+        $param = [
             'profile' => $request->profile,
-            'email' => $request=>email
+            'email' => $request->email
         ];
-        DB::table('users')->where('email',$request->email)->update($params);
+        DB::table('users')->where('email',$request->email)->update($param);
         return response()->json([
             'message' => 'User updated successfully',
-            'data' => $params
+            'data' => $param
         ],200);
     }
 }
